@@ -1,0 +1,57 @@
+version: "2.0"
+
+stories:
+
+- story: happy path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+  - action: utter_happy
+
+- story: sad path 1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: affirm
+  - action: utter_happy
+
+- story: sad path 2
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: deny
+  - action: utter_goodbye
+
+- story: Happy name path
+  steps:
+  - intent: tell_name
+  - action: utter_name
+  - action: utter_my_name
+  - intent: my_name
+    entities:
+    - name: "amaan"
+  - slot_was_set:
+    - name: "rahul"  
+  - action: utter_mobile_number
+  - intent: mobile_number
+    entities:
+    - number: "9880730150"
+  - slot_was_set:
+    - number: "9880730150" 
+  - action: utter_thanks
+
+- story: happy weather
+  steps:
+  - intent: greet 
+  - action: utter_greet
+  - intent: weather 
+  - action: utter_city
+  - intent: city 
+  - action: action_weather_api
